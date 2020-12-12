@@ -30,3 +30,5 @@ Minimum version of python required is Python3 (Python 3.8 used to develop), bina
       
    - Linux amd64-x86_64
    - More coming
+
+https://www.python.org/
