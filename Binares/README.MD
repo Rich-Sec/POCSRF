@@ -1,7 +1,8 @@
 **Usage:**
 
 ***Linux:***
-
+    
+    uname -a
     chmod +x <filename>
     ./filename -h
      ______   ______     ______     ______     ______     ______  
