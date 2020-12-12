@@ -28,7 +28,6 @@ POCSRF is designed to easily generate CSRF PoC files from the command line. Simp
 
 Minimum version of python required is Python3 (Python 3.8 used to develop), binaries are available for:
       
-   - Linux amd64-x86_64
-   - More coming
-
+   - Binaries Coming Soon
+   
 https://www.python.org/
